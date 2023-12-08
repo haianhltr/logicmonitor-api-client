@@ -49,6 +49,14 @@ def fetch_paginated_data(api_instance, fetch_function, page_size=500):
     except ApiException as e:
         logger.error(f"API Error: {str(e)}")
 
+def handle_api_exception(e):
+    """
+    Handle API exceptions and log errors.
+
+    :param e: The ApiException instance.
+    """
+    logger.error(f"API Error: {str(e)}")
+
 def save_response_to_file(response, filename):
     """
     Save the API response to a JSON file.
