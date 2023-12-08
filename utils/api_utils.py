@@ -9,6 +9,7 @@ import logging
 # Initialize a logger
 logger = logging.getLogger(__name__)
 
+
 def create_api_instance():
     """
     Create and return an API instance.
@@ -20,6 +21,7 @@ def create_api_instance():
 
     api_instance = logicmonitor_sdk.LMApi(logicmonitor_sdk.ApiClient(configuration))
     return api_instance
+
 
 def fetch_paginated_data(api_instance, fetch_function, page_size=500):
     """
@@ -49,6 +51,7 @@ def fetch_paginated_data(api_instance, fetch_function, page_size=500):
     except ApiException as e:
         logger.error(f"API Error: {str(e)}")
 
+
 def handle_api_exception(e):
     """
     Handle API exceptions and log errors.
@@ -56,6 +59,7 @@ def handle_api_exception(e):
     :param e: The ApiException instance.
     """
     logger.error(f"API Error: {str(e)}")
+
 
 def save_response_to_file(response, filename):
     """
@@ -67,6 +71,7 @@ def save_response_to_file(response, filename):
     response_dict = response.to_dict()
     with open(filename, 'w') as f:
         json.dump(response_dict, f, indent=4)
+
 
 def save_array_to_file(arr, filename):
     """

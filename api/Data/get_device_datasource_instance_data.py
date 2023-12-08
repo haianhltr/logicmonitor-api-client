@@ -21,3 +21,13 @@ def get_alert_list():
         save_array_to_file(result, 'getAlertList.json')
     except ApiException as e:
         handle_api_exception(e)
+
+
+def get_device_datasource_instance_data(deviceId, hdsId, instanceId):
+    api_instance = create_api_instance()
+    try:
+        api_response = api_instance.get_device_datasource_instance_data(deviceId, hdsId, instanceId)
+        pprint(api_response)
+        save_response_to_file(api_response, 'getDeviceDatasourceInstanceData.json')
+    except ApiException as e:
+        handle_api_exception(e)
