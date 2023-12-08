@@ -17,7 +17,7 @@ def get_alert_rule_by_id(alert_rule_id):
 def get_alert_rule_list():
     api_instance = create_api_instance()
     try:
-        result = fetch_paginated_data(api_instance, api_instance.get_alert_rule_list, page_size=500)
+        result = fetch_paginated_data(api_instance.get_alert_rule_list, page_size=500)
         save_array_to_file(result, 'getAlertRuleList.json')
     except ApiException as e:
         handle_api_exception(e)

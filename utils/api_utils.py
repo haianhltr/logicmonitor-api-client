@@ -23,7 +23,7 @@ def create_api_instance():
     return api_instance
 
 
-def fetch_paginated_data(api_instance, fetch_function, page_size=500):
+def fetch_paginated_data(fetch_function, page_size=500):
     """
     Fetch paginated data from the API using the specified fetch function.
 
@@ -35,14 +35,14 @@ def fetch_paginated_data(api_instance, fetch_function, page_size=500):
     result = []
 
     try:
-        response = fetch_function(api_instance, page_size, offset=0)
+        response = fetch_function(page_size, offset=0)
         response_dict = response.to_dict()
         total = response_dict.get('total')
         result += response_dict['items']
 
         offset = page_size
         while offset < total:
-            response = fetch_function(api_instance, page_size, offset)
+            response = fetch_function(page_size, offset)
             response_dict = response.to_dict()
             result += response_dict['items']
             offset += page_size
@@ -50,6 +50,8 @@ def fetch_paginated_data(api_instance, fetch_function, page_size=500):
         return result
     except ApiException as e:
         logger.error(f"API Error: {str(e)}")
+
+
 
 
 def handle_api_exception(e):
